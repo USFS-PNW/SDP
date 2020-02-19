@@ -2830,6 +2830,28 @@ namespace SQLite.ADO
             strList = strList.Substring(0, strList.Length - 1);
             return strList;
         }
+        public bool ColumnExists(System.Data.SQLite.SQLiteConnection p_oConn, string p_strTableName, string p_strColumnName)
+        {
+            bool bExists = false;
+            using (var cmd = new SQLiteCommand("PRAGMA table_info(" + p_strTableName + ");"))
+            {
+                var table = new DataTable();
+                cmd.Connection = p_oConn;
+                using (SQLiteDataAdapter adp = new SQLiteDataAdapter(cmd))
+                {
+                    adp.Fill(table);
+                    for (int i = 0; i < table.Rows.Count; i++)
+                    {
+                        if (table.Rows[i]["name"].ToString().ToUpper().Trim().Equals(p_strColumnName.ToUpper().Trim()))
+                        {
+                            bExists = true;
+                            break;
+                        }
+                    }
+                 }
+            }
+            return bExists;
+        }
         public void DisposedEvent(object sender, EventArgs args)
         {
             _bConnectionDisposed = true;
