@@ -81,7 +81,7 @@ namespace SQLite.ADO
                     MessageBox.Show("!!Error!! \n" +
                         "Module - SQLite:OpenConnection  \n" +
                         "Err Msg - " + this.m_strError,
-                        "QA Tools", System.Windows.Forms.MessageBoxButtons.OK,
+                        "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
                         System.Windows.Forms.MessageBoxIcon.Exclamation);
                 return;
             }
@@ -116,7 +116,7 @@ namespace SQLite.ADO
                     MessageBox.Show("!!Error!! \n" +
                         "Module - SQLite:OpenConnection  \n" +
                         "Err Msg - " + this.m_strError,
-                        "QA Tools", System.Windows.Forms.MessageBoxButtons.OK,
+                        "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
                         System.Windows.Forms.MessageBoxIcon.Exclamation);
             }
             finally
@@ -161,7 +161,7 @@ namespace SQLite.ADO
                             MessageBox.Show("!!Error!! \n" +
                                 "Module - SQLite:SqlNonQuery  \n" +
                                 "Err Msg - " + this.m_strError,
-                                "QA Tools", System.Windows.Forms.MessageBoxButtons.OK,
+                                "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
                                 System.Windows.Forms.MessageBoxIcon.Exclamation);
                     }
                     
@@ -197,7 +197,7 @@ namespace SQLite.ADO
                         MessageBox.Show("!!Error!! \n" +
                             "Module - SQLite:SqlNonQuery  \n" +
                             "Err Msg - " + this.m_strError,
-                            "QA Tools", System.Windows.Forms.MessageBoxButtons.OK,
+                            "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
                             System.Windows.Forms.MessageBoxIcon.Exclamation);
                 }
 
@@ -235,7 +235,7 @@ namespace SQLite.ADO
                         MessageBox.Show("!!Error!! \n" +
                             "Module - SQLite:SqlQueryReader  \n" +
                             "Err Msg - " + this.m_strError,
-                            "QA Tools", System.Windows.Forms.MessageBoxButtons.OK,
+                            "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
                             System.Windows.Forms.MessageBoxIcon.Exclamation);
                     this.m_DataReader = null;
                     this.m_Command = null;
@@ -273,7 +273,7 @@ namespace SQLite.ADO
 					MessageBox.Show("!!Error!! \n" + 
 						"Module - SQLite:SqlQueryReader  \n" + 
 						"Err Msg - " + this.m_strError,
-						"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                        "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 						System.Windows.Forms.MessageBoxIcon.Exclamation);
 					this.m_DataReader = null;
 					this.m_Command = null;
@@ -310,7 +310,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:SqlQueryReader  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				this.m_DataReader = null;
 				this.m_Command = null;
@@ -418,7 +418,7 @@ namespace SQLite.ADO
                     MessageBox.Show("!!Error!! \n" +
                         "Module - SQLite:getTableSchema  \n" +
                         "Err Msg - " + this.m_strError,
-                        "QA Tools", System.Windows.Forms.MessageBoxButtons.OK,
+                        "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
                         System.Windows.Forms.MessageBoxIcon.Exclamation);
                 this.m_DataReader = null;
                 this.m_Command = null;
@@ -452,7 +452,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:getTableSchema  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				this.m_DataReader = null;
 				this.m_Command = null;
@@ -487,7 +487,7 @@ namespace SQLite.ADO
 					MessageBox.Show("!!Error!! \n" + 
 						"Module - SQLite:getTableSchema  \n" + 
 						"Err Msg - " + this.m_strError,
-						"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                        "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 						System.Windows.Forms.MessageBoxIcon.Exclamation);
 					this.m_DataReader = null;
 					this.m_Command = null;
@@ -524,7 +524,7 @@ namespace SQLite.ADO
 						MessageBox.Show("!!Error!! \n" + 
 							"Module - SQLite:getTableSchema  \n" + 
 							"Err Msg - " + this.m_strError,
-							"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                            "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 							System.Windows.Forms.MessageBoxIcon.Exclamation);
 					this.m_DataReader = null;
 					this.m_Command = null;
@@ -555,7 +555,7 @@ namespace SQLite.ADO
 						MessageBox.Show("!!Error!! \n" + 
 							"Module - SQLite:getTableSchema  \n" + 
 							"Err Msg - " + this.m_strError,
-							"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                            "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 							System.Windows.Forms.MessageBoxIcon.Exclamation);
 					this.m_DataReader = null;
 					this.m_Command = null;
@@ -840,7 +840,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:CreateDataSet  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				this.m_Connection.Close();
 				this.m_DataAdapter = null;
@@ -870,7 +870,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:CreateDataSet  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				//this.m_Connection.Close();
 				this.m_DataAdapter = null;
@@ -904,7 +904,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:AddSQLQueryToDataSet  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				if (_bDisplayErrors)
 				MessageBox.Show(this.m_strError);
@@ -937,7 +937,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:AddSQLQueryToDataSet  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				if (_bDisplayErrors)
 				MessageBox.Show(this.m_strError);
@@ -982,7 +982,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:getRecordCount  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				p_Conn.Close();
 				if (_bDisplayErrors) MessageBox.Show(this.m_strError);
@@ -1024,7 +1024,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:getRecordCount  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 			}
 			p_Command = null;
@@ -1057,7 +1057,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:getRecordCount  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				
 			}
@@ -1121,7 +1121,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:getSingleStringValueFromSQLQuery  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				
 			}
@@ -1154,7 +1154,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:getSingleStringValueFromSQLQuery  \n" + 
 					"Err Msg - " + this.m_strError,
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				
 				
@@ -1201,7 +1201,7 @@ namespace SQLite.ADO
 					MessageBox.Show("!!Error!! \n" + 
 						"Module - SQLite:getSingleStringValueFromSQLQuery  \n" + 
 						"Err Msg - " + this.m_strError,
-						"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                        "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 						System.Windows.Forms.MessageBoxIcon.Exclamation);
 				
 			}
@@ -1289,7 +1289,7 @@ namespace SQLite.ADO
 					MessageBox.Show("!!Error!! \n" + 
 						"Module - SQLite:ConvertDataViewToDataTable  \n" + 
 						"Err Msg - " + ex.Message,
-						"QATools",System.Windows.Forms.MessageBoxButtons.OK,
+						"FIA Biosum",System.Windows.Forms.MessageBoxButtons.OK,
 						System.Windows.Forms.MessageBoxIcon.Exclamation);
 				
 				}
@@ -1383,7 +1383,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:ConvertDelimitedTextToDataTable  \n" + 
 					"Err Msg - " + caught.Message.ToString().Trim(),
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				this.m_intError=-1;
 			}
@@ -1541,7 +1541,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:ConfigureDataAdapterInsertCommand  \n" + 
 					"Err Msg - " + e.Message.ToString().Trim(),
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				this.m_intError=-1;
 			}
@@ -1732,7 +1732,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:ConfigureDataAdapterUpdateCommand  \n" + 
 					"Err Msg - " + e.Message.ToString().Trim(),
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				this.m_intError=-1;
 			}
@@ -1888,7 +1888,7 @@ namespace SQLite.ADO
 				MessageBox.Show("!!Error!! \n" + 
 					"Module - SQLite:ConfigureDataAdapterUpdateCommand  \n" + 
 					"Err Msg - " + e.Message.ToString().Trim(),
-					"QA Tools",System.Windows.Forms.MessageBoxButtons.OK,
+                    "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Exclamation);
 				this.m_intError=-1;
 			}
@@ -2972,6 +2972,11 @@ namespace SQLite.ADO
                  }
             }
             return bExists;
+        }
+
+        public string GetConnectionString(string strDatabasePath)
+        {
+            return "data source = " + strDatabasePath;
         }
         public void DisposedEvent(object sender, EventArgs args)
         {
