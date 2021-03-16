@@ -2012,6 +2012,7 @@ namespace SQLite.ADO
         {
             InitializeDataAdapterArray(DataAdapterTableCount);
         }
+
         /// <summary>
         /// Size and create dataadapter array (m_DataAdapterArray), dispose of each existing dataadapter object in the array (m_DataAdapterArray,
         /// and instantiate each dataadapter object in the array (m_DataAdapterArray).
@@ -2369,6 +2370,12 @@ namespace SQLite.ADO
                     }
 
                 }
+
+                if (m_Transaction != null)
+                {
+                    m_Transaction.Dispose();
+                }
+
                 while (p_Connection.State != System.Data.ConnectionState.Closed)
                 {
 
@@ -2972,6 +2979,14 @@ namespace SQLite.ADO
                  }
             }
             return bExists;
+        }
+
+        public string[] getTableNames(SQLiteConnection p_oConn)
+        {
+            string strSql = "SELECT name FROM sqlite_master WHERE type = 'table' AND " +
+                            "name NOT LIKE 'sqlite_%'";
+            List<string> lstTables = getStringList(p_oConn, strSql);
+            return lstTables.ToArray<string>();
         }
 
         public string GetConnectionString(string strDatabasePath)
