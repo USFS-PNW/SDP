@@ -1905,7 +1905,8 @@ namespace SQLite.ADO
         /// <param name="p_strColumns">Comma delimited list of all the columns to be configured by the dataadapter including primary key columns.
         ///Can be a subset of all the columns in the table. VALID VALUES: * or comma-delimited list </param>
         /// <param name="p_strPrimaryKey">Comma-delimited list of the primary key(s)</param>
-        public void InitializeDataAdapterArrayItem(int TABLE_INDEX, string p_strTableName, string p_strColumns, string p_strPrimaryKeyColumns)
+        public void InitializeDataAdapterArrayItem(int TABLE_INDEX, string p_strTableName, string p_strColumns, 
+            string p_strPrimaryKeyColumns, string p_strWhereCondition)
         {
            
 
@@ -1942,10 +1943,14 @@ namespace SQLite.ADO
                     break;
                 }
             }
+
             m_DataAdapterArray[TABLE_INDEX] = new SQLiteDataAdapter();
-            m_strSQL = "SELECT " + p_strColumns + " FROM " + p_strTableName;
             InitializeOleDbTransactionCommands(m_DataAdapterArray[TABLE_INDEX], p_strTableName, p_strColumns, p_strPrimaryKeyColumns);
             m_strSQL = "SELECT " + p_strColumns + " FROM " + p_strTableName;
+            if (p_strWhereCondition != null && p_strWhereCondition.Trim().Length > 0)
+                m_strSQL = "SELECT " + p_strColumns + " FROM " + p_strTableName + " WHERE " + p_strWhereCondition;
+            else
+                m_strSQL = "SELECT " + p_strColumns + " FROM " + p_strTableName;
             m_Command = m_Connection.CreateCommand();
             m_Command.CommandText = m_strSQL;
             m_DataAdapterArray[TABLE_INDEX].SelectCommand = m_Command;
@@ -2106,8 +2111,6 @@ namespace SQLite.ADO
                     }
                 }
             }
-           
-
         }
         /// <summary>
         /// Dispose of dataadapter object (m_DataAdapter) and reconfigure a new dataadapter (m_DataAdapter)
@@ -2993,6 +2996,40 @@ namespace SQLite.ADO
         {
             return "data source = " + strDatabasePath;
         }
+
+        public void DataAdapterArrayItemConfigureSelectCommand(int TABLE_INDEX, string p_strTableName, string p_strColumns,
+            string p_strPrimaryKeyColumns, string p_strWhereCondition)
+        {
+            if (m_DataAdapterArray[TABLE_INDEX] != null)
+            {
+                if (m_DataAdapterArray[TABLE_INDEX].SelectCommand != null)
+                {
+                    // m_DataAdapterArray[TABLE_INDEX].SelectCommand.Transaction.Dispose();
+                    m_DataAdapterArray[TABLE_INDEX].SelectCommand.Dispose();
+                }
+            }
+            for (int x = 0; x <= m_DataSet.Tables.Count - 1; x++)
+            {
+                if (m_DataSet.Tables[x].TableName.ToUpper().Trim() == p_strTableName.ToUpper().Trim())
+                {
+                    m_DataSet.Tables[p_strTableName].Clear();
+                    m_DataSet.Tables[p_strTableName].Dispose();
+                    break;
+                }
+            }
+            m_strSQL = "SELECT " + p_strColumns + " FROM " + p_strTableName;
+            if (p_strWhereCondition != null && p_strWhereCondition.Trim().Length > 0)
+                m_strSQL = "SELECT " + p_strColumns + " FROM " + p_strTableName + " WHERE " + p_strWhereCondition;
+            else
+                m_strSQL = "SELECT " + p_strColumns + " FROM " + p_strTableName;
+            m_Command = m_Connection.CreateCommand();
+            m_Command.CommandText = m_strSQL;
+            m_DataAdapterArray[TABLE_INDEX].SelectCommand = m_Command;
+            m_DataAdapterArray[TABLE_INDEX].SelectCommand.Transaction = m_Transaction;
+            m_DataAdapterArray[TABLE_INDEX].Fill(this.m_DataSet, p_strTableName);
+            m_DataSet.Tables[p_strTableName].PrimaryKey = new System.Data.DataColumn[] { this.m_DataSet.Tables[p_strTableName].Columns[p_strPrimaryKeyColumns] };
+        }
+
         public void DisposedEvent(object sender, EventArgs args)
         {
             _bConnectionDisposed = true;
