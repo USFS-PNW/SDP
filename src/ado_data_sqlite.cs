@@ -2616,22 +2616,6 @@ namespace SQLite.ADO
 
         }
 
-
-        /// <summary>
-        /// Alter an MS Access table to add a primary key index
-        /// </summary>
-        /// <param name="p_oConn"></param>
-        /// <param name="p_strTableName"></param>
-        /// <param name="p_strIndexName"></param>
-        /// <param name="p_strColumnList"></param>
-        public void AddPrimaryKey(System.Data.SQLite.SQLiteConnection p_oConn, string p_strTableName, string p_strIndexName, string p_strColumnList)
-        {
-            this.m_strSQL = "ALTER TABLE " + p_strTableName + " " +
-                            "ADD CONSTRAINT " + p_strIndexName + " " +
-                            "PRIMARY KEY (" + p_strColumnList + ")";
-            this.SqlNonQuery(p_oConn, this.m_strSQL);
-
-        }
         /// <summary>
         /// Alter an MS Access table to add an autonumber data type to a column
         /// </summary>
