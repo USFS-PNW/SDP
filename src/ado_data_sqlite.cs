@@ -2802,6 +2802,77 @@ namespace SQLite.ADO
 
         }
         /// <summary>
+        /// Return a formatted string used to compile a CREATE TABLE sql command
+        /// Maps MS Access data types to SQLite
+        /// </summary>
+        /// <param name="p_oRow">ADO.NET datarow</param>
+        /// <returns></returns>
+        public string FormatCreateTableSQLiteFieldItem(System.Data.DataRow p_oRow)
+        {
+            string strLine;
+            string strColumn = p_oRow["ColumnName"].ToString().Trim();
+            string strDataType = p_oRow["DataType"].ToString().Trim();
+            string strPrecision = "";
+            string strScale = "";
+            string strSize = "";
+
+            if (p_oRow["ColumnSize"] != null)
+                strSize = Convert.ToString(p_oRow["ColumnSize"]);
+
+            if (p_oRow["NumericPrecision"] != null)
+                strPrecision = Convert.ToString(p_oRow["NumericPrecision"]);
+
+            if (p_oRow["NumericScale"] != null)
+                strScale = Convert.ToString(p_oRow["NumericScale"]);
+
+
+
+            strColumn = "[" + strColumn + "]";
+
+
+            switch (strDataType)
+            {
+
+                case "System.Single":
+                    strDataType = "REAL";
+                    break;
+                case "System.Double":
+                    strDataType = "REAL";
+                    break;
+                case "System.Decimal":
+                    strDataType = "REAL";
+                    break;
+                case "System.String":
+                    strDataType = "TEXT";
+                    break;
+                case "System.Int16":
+                    strDataType = "INTEGER";
+                    break;
+                case "System.Char":
+                    strDataType = "TEXT";
+                    break;
+                case "System.Int32":
+                    strDataType = "integer";
+                    break;
+                case "System.DateTime":
+                    strDataType = "TEXT";
+                    break;
+                case "System.DayOfWeek":
+                    break;
+                case "System.Int64":
+                    break;
+                case "System.Byte":
+                    strDataType = "TEXT";
+                    break;
+                case "System.Boolean":
+                    break;
+            }
+
+            strLine = strColumn + " " + strDataType;
+            return strLine;
+
+        }
+        /// <summary>
         /// Format SQL command string for these issues:
         /// 1. numeric values to handle MS ACCESS decimal length maximums
         /// 2. MS ACCESS reserved words
