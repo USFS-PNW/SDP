@@ -424,6 +424,7 @@ namespace SQLite.ADO
                 this.m_Command = null;
                 return null;
             }
+            this.m_Command.Dispose();
             this.m_DataReader.Close();
             return p_dt;		
 		}
