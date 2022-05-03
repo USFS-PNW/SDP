@@ -3086,6 +3086,64 @@ namespace SQLite.ADO
             m_DataSet.Tables[p_strTableName].PrimaryKey = new System.Data.DataColumn[] { this.m_DataSet.Tables[p_strTableName].Columns[p_strPrimaryKeyColumns] };
         }
 
+        /// <summary>
+        /// add the table names to a listbox
+        /// </summary>
+        /// <param name="strPathAndFile"></param>
+        /// <param name="listbox1"></param>
+        public void LoadTablesIntoListBox(string strPathAndFile, System.Windows.Forms.ListBox listbox1)
+        {
+
+            this.m_intError = 0;
+            this.m_strError = "";
+
+            var strConn = this.GetConnectionString(strPathAndFile);
+            using (SQLiteConnection conn = new SQLiteConnection(strConn))
+            {
+                conn.Open();
+                string[] arrTables = getTableNames(conn);
+                foreach (var item in arrTables)
+                {
+                    listbox1.Items.Add(item);
+                }
+            }
+        }
+
+        /// <summary>
+        /// add the field names to a checked listbox
+        /// </summary>
+        /// <param name="strDBPathAndFile"></param>
+        /// <param name="strTableName"></param>
+        /// <param name="CheckedListBox1"></param>
+        public void LoadFieldsIntoCheckedListBox(string strPathAndFile, string strTableName, System.Windows.Forms.CheckedListBox CheckedListBox1)
+        {
+            int x = 0;
+            this.m_intError = 0;
+            this.m_strError = "";
+
+            try
+            {
+                var strConn = this.GetConnectionString(strPathAndFile);
+                using (SQLiteConnection conn = new SQLiteConnection(strConn))
+                {
+                    conn.Open();
+                    string[] arrFields = getFieldNamesArray(conn, "SELECT * FROM " + strTableName);
+                    for (x = 0; x <= arrFields.Count()-1; x++)
+                    {
+                        CheckedListBox1.Items.Add(arrFields[x]);
+                    }
+                }
+
+            }
+            catch (Exception caught)
+            {
+                this.m_strError = "DataMgr.LoadFieldsIntoCheckedListBox() error: " + caught.Message;
+                this.m_intError = -1;
+                MessageBox.Show(this.m_strError);
+                return;
+            }
+        }
+
         public void DisposedEvent(object sender, EventArgs args)
         {
             _bConnectionDisposed = true;
