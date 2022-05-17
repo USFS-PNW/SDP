@@ -2618,17 +2618,6 @@ namespace SQLite.ADO
         }
 
         /// <summary>
-        /// Alter an MS Access table to add an autonumber data type to a column
-        /// </summary>
-        /// <param name="p_oConn"></param>
-        /// <param name="p_strTableName"></param>
-        /// <param name="p_strColumnName"></param>
-        public void AddAutoNumber(System.Data.SQLite.SQLiteConnection p_oConn, string p_strTableName, string p_strColumnName)
-        {
-            this.m_strSQL = "ALTER TABLE " + p_strTableName + " ALTER COLUMN " + p_strColumnName + " AUTOINCREMENT";
-            SqlNonQuery(p_oConn, m_strSQL);
-        }
-        /// <summary>
         /// Create an index
         /// </summary>
         /// <param name="p_oConn"></param>
