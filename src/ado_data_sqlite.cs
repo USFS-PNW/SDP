@@ -1235,7 +1235,7 @@ namespace SQLite.ADO
                     this.m_strError = caught.Message + "  SQL query command: " + strSQL + " failed";
                     if (_bDisplayErrors)
                         MessageBox.Show("!!Error!! \n" +
-                                        "Module - ado_data_access:getSingleStringValueFromSQLQuery  \n" +
+                                        "Module - DataMgr:getSingleDoubleValueFromSQLQuery  \n" +
                                         "Err Msg - " + this.m_strError,
                             "FIA Biosum", System.Windows.Forms.MessageBoxButtons.OK,
                             System.Windows.Forms.MessageBoxIcon.Exclamation);
@@ -3131,6 +3131,28 @@ namespace SQLite.ADO
                 MessageBox.Show(this.m_strError);
                 return;
             }
+        }
+
+        public bool DatabaseAttached(SQLiteConnection p_oConn, string strDatabase)
+        {
+            SqlQueryReader(p_oConn, "SELECT * FROM pragma_database_list");
+            if (m_DataReader.HasRows)
+            {
+                while (m_DataReader.Read())
+                {
+                    if (m_DataReader["file"] != System.DBNull.Value)
+                    {
+                        string strFile = Convert.ToString(m_DataReader["file"]);
+                        if (strFile.Equals(strDatabase))
+                        {
+                            m_DataReader.Close();
+                            return true;
+                        }
+                    }
+                }
+                m_DataReader.Close();
+            }
+            return false;
         }
 
         public void DisposedEvent(object sender, EventArgs args)
