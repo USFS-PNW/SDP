@@ -2324,6 +2324,13 @@ namespace SQLite.ADO
             }
             return bFound;
         }
+        public bool IndexExist(SQLiteConnection p_conn, string p_strIndex)
+        {
+            string strSQL = "SELECT COUNT(*) FROM sqlite_master WHERE type='index' AND TRIM(UPPER(name))='" + p_strIndex.Trim().ToUpper() + "'";
+            int intCount = (int)getRecordCount(p_conn, strSQL, "temp");
+            if (intCount > 0) return true;
+            else return false;
+        }
         /// <summary>
         /// Return an array of field names after executing the SELECT SQL 
         /// </summary>
