@@ -374,7 +374,28 @@ namespace SQLite.ADO
 			return strFields;
 			
 		}
-		public string getFieldNames(string p_strConn,string p_strSql)
+
+        public void getFieldNamesAndDataTypes(System.Data.SQLite.SQLiteConnection p_oConn, string p_strSql, ref string p_strFieldNamesList, ref string p_strDataTypesList)
+        {
+            string strFields = "";
+            string strDataTypes = "";
+            this.m_intError = 0;
+
+            System.Data.DataTable oTableSchema = this.getTableSchema(p_oConn, p_strSql);
+            if (this.m_intError != 0) return;
+               
+            for (int x = 0; x <= oTableSchema.Rows.Count - 1; x++)
+            {
+                strFields = strFields + oTableSchema.Rows[x]["columnname"].ToString().Trim() + ",";
+                strDataTypes = strDataTypes + oTableSchema.Rows[x]["datatype"].ToString().Trim() + ",";
+            }
+            if (strFields.Trim().Length > 0) strFields = strFields.Substring(0, strFields.Trim().Length - 1);
+            if (strDataTypes.Trim().Length > 0) strDataTypes = strDataTypes.Substring(0, strDataTypes.Trim().Length - 1);
+            p_strFieldNamesList = p_strFieldNamesList + strFields;
+            p_strDataTypesList = p_strDataTypesList + strDataTypes;
+        }
+
+        public string getFieldNames(string p_strConn,string p_strSql)
 		{
 			string strFields="";
 			this.m_intError=0;
