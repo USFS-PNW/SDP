@@ -2318,6 +2318,21 @@ namespace SQLite.ADO
             if (intCount > 0) return true;
             else return false;
 		}
+        public bool AttachedTableExist(System.Data.SQLite.SQLiteConnection p_conn, string p_strSourceTable)
+        {
+            try
+            {
+                var command = p_conn.CreateCommand();
+                command.CommandText = "SELECT * FROM " + p_strSourceTable;
+                var dataReader = command.ExecuteReader();
+            }
+            catch (Exception)
+            {
+                // munch; Table doesn't exist
+                return false;
+            }
+            return true;
+        }
         /// <summary>
         /// Check if the column exists in the designated table
         /// </summary>
