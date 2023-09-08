@@ -2318,20 +2318,27 @@ namespace SQLite.ADO
             if (intCount > 0) return true;
             else return false;
 		}
-        public bool AttachedTableExist(System.Data.SQLite.SQLiteConnection p_conn, string p_strSourceTable)
+        public bool AttachedTableExist(SQLiteConnection p_conn, string p_strSourceTable)
         {
-            try
+            string strSQL = "PRAGMA database_list";
+            SqlQueryReader(p_conn, strSQL);
+            if (m_DataReader.HasRows)
             {
-                var command = p_conn.CreateCommand();
-                command.CommandText = "SELECT * FROM " + p_strSourceTable;
-                var dataReader = command.ExecuteReader();
+                while (m_DataReader.Read())
+                {
+                    string attachedDbFile = m_DataReader["file"].ToString().Trim();
+                    using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString(attachedDbFile)))
+                    {
+                        conn.Open();
+                        bool bExists = TableExist(conn, p_strSourceTable);
+                        if (bExists)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
-            catch (Exception)
-            {
-                // munch; Table doesn't exist
-                return false;
-            }
-            return true;
+            return false;
         }
         /// <summary>
         /// Check if the column exists in the designated table
