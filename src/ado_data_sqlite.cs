@@ -2367,6 +2367,44 @@ namespace SQLite.ADO
             }
             return bFound;
         }
+        /// <summary>
+        /// Check if the column exists in the designated table. Supports columns in attached schemas
+        /// </summary>
+        /// <param name="p_oConn"></param>
+        /// <param name="p_strTableName"></param>
+        /// <param name="p_strColumnName"></param>
+        /// <returns></returns>
+        public bool AttachedColumnExist(System.Data.SQLite.SQLiteConnection p_oConn, string p_strTableName, string p_strColumnName)
+        {
+            bool bFound = false;
+            string strSQL = "PRAGMA database_list";
+            SqlQueryReader(p_oConn, strSQL);
+            while (m_DataReader.Read())
+            {
+                string attachedDbFile = m_DataReader["file"].ToString().Trim();
+                using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString(attachedDbFile)))
+                {
+                    conn.Open();
+                    if (TableExist(conn, p_strTableName))
+                    {
+                        string[] strArray = this.getFieldNamesArray(conn, "SELECT * FROM " + p_strTableName);
+                        if (strArray != null)
+                        {
+                            for (int x = 0; x <= strArray.Length - 1; x++)
+                            {
+                                if (p_strColumnName.Trim().ToUpper() == strArray[x].Trim().ToUpper())
+                                {
+                                    m_DataReader.Close();
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            m_DataReader.Close();
+            return bFound;
+        }
         public bool IndexExist(SQLiteConnection p_conn, string p_strIndex)
         {
             string strSQL = "SELECT COUNT(*) FROM sqlite_master WHERE type='index' AND TRIM(UPPER(name))='" + p_strIndex.Trim().ToUpper() + "'";
