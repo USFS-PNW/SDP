@@ -2378,10 +2378,12 @@ namespace SQLite.ADO
         {
             bool bFound = false;
             string strSQL = "PRAGMA database_list";
-            SqlQueryReader(p_oConn, strSQL);
-            while (m_DataReader.Read())
+            SQLiteCommand command = p_oConn.CreateCommand();
+            command.CommandText = strSQL;
+            SQLiteDataReader oReader = command.ExecuteReader();
+            while (oReader.Read())
             {
-                string attachedDbFile = m_DataReader["file"].ToString().Trim();
+                string attachedDbFile = oReader["file"].ToString().Trim();
                 using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString(attachedDbFile)))
                 {
                     conn.Open();
@@ -2394,7 +2396,7 @@ namespace SQLite.ADO
                             {
                                 if (p_strColumnName.Trim().ToUpper() == strArray[x].Trim().ToUpper())
                                 {
-                                    m_DataReader.Close();
+                                    oReader.Close();
                                     return true;
                                 }
                             }
@@ -2402,7 +2404,7 @@ namespace SQLite.ADO
                     }
                 }
             }
-            m_DataReader.Close();
+            oReader.Close();
             return bFound;
         }
         public bool IndexExist(SQLiteConnection p_conn, string p_strIndex)
