@@ -2327,13 +2327,16 @@ namespace SQLite.ADO
                 while (m_DataReader.Read())
                 {
                     string attachedDbFile = m_DataReader["file"].ToString().Trim();
-                    using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString(attachedDbFile)))
+                    if (!string.IsNullOrEmpty(attachedDbFile))
                     {
-                        conn.Open();
-                        bool bExists = TableExist(conn, p_strSourceTable);
-                        if (bExists)
+                        using (SQLiteConnection conn = new SQLiteConnection(GetConnectionString(attachedDbFile)))
                         {
-                            return true;
+                            conn.Open();
+                            bool bExists = TableExist(conn, p_strSourceTable);
+                            if (bExists)
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
